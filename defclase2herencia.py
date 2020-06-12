@@ -39,15 +39,16 @@ class Furgoneta(Vehiculos):
         else:
             return "La furgoneta no está cargada"
 
-class VElectricos():
+class VElectricos(Vehiculos):
 
-    def __init__(self):
+    def __init__(self, marca, modelo):
+        super().__init__(marca, modelo) # Hereda las propiedades iniciales del padre
         self.autonomia = 100
 
     def cargarEnergia(self):
         self.cargando = True
 
-class BiciElectrica(Moto,VElectricos): # herencia doble, hereda con prioridad la primera clase
+class BiciElectrica(VElectricos,Vehiculos): # herencia doble, hereda con prioridad la primera clase
     pass
 
 miMoto = Moto("Honda","CBR")
@@ -60,6 +61,4 @@ miFurgoneta.estado()
 print(miFurgoneta.carga(True))
 
 miBici = BiciElectrica("Shimano","T-1100")
-miBici.arrancar()
-miBici.caballito()
 miBici.estado()
