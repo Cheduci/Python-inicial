@@ -20,7 +20,7 @@ class Vehiculos():
             print("El vehículo está detenido, no es necesario frenar.")    
         
     def estado(self):
-        print("\nMarca: ", self.marca, "\nModelo: ", self.modelo, "\nEn marcha: ", self.enmarcha, "\nAcelerando: ", self.acelera, "\nFrenando: ", self.frena)
+        print("\nClase: ", self.__class__,"\nMarca: ", self.marca, "\nModelo: ", self.modelo, "\nEn marcha: ", self.enmarcha, "\nAcelerando: ", self.acelera, "\nFrenando: ", self.frena)
 
 class Moto(Vehiculos): # hereda las funciones y las propiedades
     hcaballito = ""
@@ -28,7 +28,8 @@ class Moto(Vehiculos): # hereda las funciones y las propiedades
         self.hcaballito = "Voy haciendo el caballito"
     
     def estado(self): # sobreescritura de métodos, el hijo sobreescribe al padre
-        print("\nMarca: ", self.marca, "\nModelo: ", self.modelo, "\nEn marcha: ", self.enmarcha, "\nAcelerando: ", self.acelera, "\nFrenando: ", self.frena, "\n", self.hcaballito)
+        super().estado()
+        print(self.hcaballito)
 
 class Furgoneta(Vehiculos):
 
