@@ -1,4 +1,5 @@
 class Vehiculos():
+    
     def __init__(self,marca,modelo): # constructor de propiedades iniciales
         self.marca = marca
         self.modelo = modelo
@@ -19,13 +20,46 @@ class Vehiculos():
             print("El vehículo está detenido, no es necesario frenar.")    
         
     def estado(self):
-        print("Marca: ", self.marca, "\nModelo: ", self.modelo, "\nEn marcha: ", self.enmarcha, "\nAcelerando: ", self.acelera, "\nFrenando: ", self.frena)
+        print("\nMarca: ", self.marca, "\nModelo: ", self.modelo, "\nEn marcha: ", self.enmarcha, "\nAcelerando: ", self.acelera, "\nFrenando: ", self.frena)
 
 class Moto(Vehiculos): # hereda las funciones y las propiedades
     hcaballito = ""
     def caballito(self):
-        hcaballito = "Voy haciendo el caballito"
+        self.hcaballito = "Voy haciendo el caballito"
+    
+    def estado(self): # sobreescritura de métodos, el hijo sobreescribe al padre
+        print("\nMarca: ", self.marca, "\nModelo: ", self.modelo, "\nEn marcha: ", self.enmarcha, "\nAcelerando: ", self.acelera, "\nFrenando: ", self.frena, "\n", self.hcaballito)
+
+class Furgoneta(Vehiculos):
+
+    def carga(self,cargar): # función exclusiva de furgoneta
+        self.cargado = cargar
+        if self.cargado:
+            return "La furgoneta está cargada"
+        else:
+            return "La furgoneta no está cargada"
+
+class VElectricos():
+
+    def __init__(self):
+        self.autonomia = 100
+
+    def cargarEnergia(self):
+        self.cargando = True
+
+class BiciElectrica(Moto,VElectricos): # herencia doble, hereda con prioridad la primera clase
+    pass
 
 miMoto = Moto("Honda","CBR")
-
+miMoto.caballito()
 miMoto.estado()
+
+miFurgoneta = Furgoneta("Renault","Kangoo")
+miFurgoneta.arrancar()
+miFurgoneta.estado()
+print(miFurgoneta.carga(True))
+
+miBici = BiciElectrica("Shimano","T-1100")
+miBici.arrancar()
+miBici.caballito()
+miBici.estado()
