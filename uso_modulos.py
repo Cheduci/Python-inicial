@@ -1,3 +1,3 @@
-from calculos.calculos_generales import *
+from calculos.basicos.calculosbasicos import *
 
 dividir(9,3)
