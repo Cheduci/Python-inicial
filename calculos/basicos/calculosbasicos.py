@@ -9,9 +9,3 @@ def multiplicar(a,b):
 
 def dividir(a,b):
     print("La division es: ", a/b)
-
-def potencia(a,b):
-    print("La potencia es: ", a**b)
-
-def redondear(a):
-    print("El redondeo es: ", round(a))
