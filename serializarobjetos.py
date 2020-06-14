@@ -34,7 +34,7 @@ pickle.dump(coches, fichero)
 fichero.close()
 del fichero
 
-ficheroApertura = open("losCoches","rb")
+ficheroApertura = open("losCoches","rb") # "ficheroPertura" es la variable, "losCoches" es el archivo
 misCoches = pickle.load(ficheroApertura)
 ficheroApertura.close()
 
