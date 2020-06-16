@@ -1,4 +1,17 @@
 from tkinter import *
+from tkinter import messagebox
+
+def infoAdicional(): # se debe definir cada función del menú
+    messagebox.showinfo("JQZ playing menus","This is just a test, so I'm just playing")
+
+def avisoLicencia():
+    messagebox.showwarning("Licencia","Producto bajo licencia ZJQ, así que PAGUE! PAGUE! PAGUE! xD")
+
+def salirApp():
+#    valor = messagebox.askquestion("Quit","Do you really want to quit???") # devuelve "yes" o "no"
+    valor = messagebox.askokcancel("Quit","Do you really want to quit???") # devuelve True o False
+    if valor:
+        raiz.destroy()
 
 def numeros(a):
     if a == ".":
@@ -27,6 +40,20 @@ raiz.title("Calculadora de Zhang Jian Qiao")
 miFrame = Frame(raiz)
 miFrame.pack()
 
+# ---------- Menus ---------- #
+
+barraMenu = Menu(raiz)
+raiz.config(menu = barraMenu)
+
+archivoMenu = Menu(barraMenu, tearoff = 0)
+archivoMenu.add_command(label = "Quit", command = salirApp)
+
+ayudaMenu = Menu(barraMenu, tearoff = 0)
+ayudaMenu.add_command(label = "License", command = avisoLicencia)
+ayudaMenu.add_command(label = "About", command = infoAdicional)
+
+barraMenu.add_cascade(label = "File", menu = archivoMenu)
+barraMenu.add_cascade(label = "Help", menu = ayudaMenu)
 
 # ---------- Displays ---------- #
 
