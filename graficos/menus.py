@@ -1,7 +1,12 @@
 from tkinter import *
 from tkinter import messagebox
+from tkinter import filedialog
 
 root = Tk()
+
+def abreFichero():
+    fichero = filedialog.askopenfilename(title = "Abrir",initialdir="D:\Mis cosas\Images", filetypes= (("Ficheros de excel","*.xlsx"),("Ficheros de texto","*.txt"))) # devuelve la ruta del archivo seleccionado, "filetypes" pide una tupla
+    print(fichero)
 
 def infoAdicional(): # se debe definir cada función del menú
     messagebox.showinfo("JQZ playing menus","This is just a test, so I'm just playing")
@@ -26,7 +31,7 @@ root.config(menu = barraMenu, width = 800, height = 600)
 
 archivoMenu = Menu(barraMenu, tearoff = 0) # tear es una barra separadora que viene por defecto, el valor 0 lo elimina
 archivoMenu.add_command(label = "New")
-archivoMenu.add_command(label = "Open")
+archivoMenu.add_command(label = "Open", command = abreFichero)
 archivoMenu.add_command(label = "Save")
 archivoMenu.add_command(label = "Save as")
 archivoMenu.add_separator() # separador
