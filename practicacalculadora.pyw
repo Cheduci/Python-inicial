@@ -50,7 +50,7 @@ resultado = 0
 
 botonOn = Button(miFrame, text = "Ac", font = 10, width = 9, height = 2, command = lambda:ac())
 botonOn.grid(row = 1, column = 1)
-botonOn.config(bg = "red", fg = "white", cursor = "hand2")
+botonOn.config(bg = "red", fg = "white", cursor = "hand1")
 
 
 pantalla = Entry(miFrame, font = 8, width = 26, textvariable = display)
