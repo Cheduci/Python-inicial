@@ -83,6 +83,12 @@ def eliminar():
 
     messagebox.showinfo("BBDD","Registro eliminado exitosamente")
 
+def infoAdicional(): # se debe definir cada función del menú
+    messagebox.showinfo("Acerca de", "Este es MI programa, no es TU programa, así que me tenés que PAGAR!")
+
+def avisoLicencia():
+    messagebox.showwarning("Licencia","Producto bajo licencia ZJQ, pagame loco, qué te pensás? que esto es gratuito??")
+
 # ------------ MENUS ------------ 
 
 barraMenu = Menu(root)
@@ -102,8 +108,8 @@ menuCRUD.add_command(label = "Actualizar", command = actualizar)
 menuCRUD.add_command(label = "Borrar", command = eliminar)
 
 menuAyuda = Menu(barraMenu, tearoff = 0)
-menuAyuda.add_command(label = "Licencia")
-menuAyuda.add_command(label = "Acerca de")
+menuAyuda.add_command(label = "Licencia", command = avisoLicencia)
+menuAyuda.add_command(label = "Acerca de", command = infoAdicional)
 
 barraMenu.add_cascade(label = "BBDD", menu = menuBBDD)
 barraMenu.add_cascade(label = "Borrar", menu = menuBorrar)
