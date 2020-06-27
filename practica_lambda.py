@@ -1,5 +1,3 @@
-destacar_valor = lambda comision: "¡{}! $".format(comision)
+area_triangulo = lambda base,altura: base*altura/2
 
-comision_ana = 1555
-
-print(destacar_valor(comision_ana))
+print(area_triangulo(7,5))

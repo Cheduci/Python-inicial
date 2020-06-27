@@ -13,16 +13,6 @@ def salirApp():
     if valor:
         raiz.destroy()
 
-def numeros(a):
-    if a == ".":
-        return True
-    else:
-        try:
-            float(a)
-            return True
-        except:
-            return False
-
 def operacion(o,a,b):
     if o == "suma":
         return a + b
@@ -106,64 +96,12 @@ def botonPulsado(num):
     else:
         display.set(display.get() + num)
 
-
-def suma(num):
+def botonOperacion(num,oper):
     global op
     global opPrev
     global resultado
     global resetDisplay
-    op = "suma"
-    if opPrev == "":
-        resultado = float(num)
-        opPrev = op
-        resetDisplay = True
-        display.set(resultado)
-    else:
-        resultado = operacion(opPrev,resultado,float(num))
-        opPrev = op
-        resetDisplay = True
-        display.set(resultado)
-
-def resta(num):
-    global op
-    global opPrev
-    global resultado
-    global resetDisplay
-    op = "resta"
-    if opPrev == "":
-        resultado = float(num)
-        opPrev = op
-        resetDisplay = True
-        display.set(resultado)
-    else:
-        resultado = operacion(opPrev,resultado,float(num))
-        opPrev = op
-        resetDisplay = True
-        display.set(resultado) 
-
-def mult(num):
-    global op
-    global opPrev
-    global resultado
-    global resetDisplay
-    op = "mult"
-    if opPrev == "":
-        resultado = float(num)
-        opPrev = op
-        resetDisplay = True
-        display.set(resultado)
-    else:
-        resultado = operacion(opPrev,resultado,float(num))
-        opPrev = op
-        resetDisplay = True
-        display.set(resultado)
-
-def div(num):
-    global op
-    global opPrev
-    global resultado
-    global resetDisplay
-    op = "div"
+    op = oper
     if opPrev == "":
         resultado = float(num)
         opPrev = op
@@ -199,7 +137,7 @@ boton9 = Button(miFrame, text = "9", font = 10, width = 9, height = 2, command =
 boton9.grid(row = 2, column = 3)
 boton9.config(cursor = "hand2")
 
-botonDiv = Button(miFrame, text = "/", font = 10, width = 9, height = 2, command = lambda:div(display.get()))
+botonDiv = Button(miFrame, text = "/", font = 10, width = 9, height = 2, command = lambda:botonOperacion(display.get(),"div"))
 botonDiv.grid(row = 2, column = 4)
 botonDiv.config(cursor = "hand2")
 
@@ -217,7 +155,7 @@ boton6 = Button(miFrame, text = "6", font = 10, width = 9, height = 2, command =
 boton6.grid(row = 3, column = 3)
 boton6.config(cursor = "hand2")
 
-botonMult = Button(miFrame, text = "x", font = 10, width = 9, height = 2, command = lambda:mult(display.get()))
+botonMult = Button(miFrame, text = "x", font = 10, width = 9, height = 2, command = lambda:botonOperacion(display.get(),"mult"))
 botonMult.grid(row = 3, column = 4)
 botonMult.config(cursor = "hand2")
 
@@ -235,7 +173,7 @@ boton3 = Button(miFrame, text = "3", font = 10, width = 9, height = 2, command =
 boton3.grid(row = 4, column = 3)
 boton3.config(cursor = "hand2")
 
-botonRest = Button(miFrame, text = "-", font = 10, width = 9, height = 2, command = lambda:resta(display.get()))
+botonRest = Button(miFrame, text = "-", font = 10, width = 9, height = 2, command = lambda:botonOperacion(display.get(),"resta"))
 botonRest.grid(row = 4, column = 4)
 botonRest.config(cursor = "hand2")
 
@@ -253,9 +191,9 @@ botonIgual = Button(miFrame, text = "=", font = 10, width = 9, height = 2, comma
 botonIgual.grid(row = 5, column = 3)
 botonIgual.config(cursor = "hand2")
 
-botonSuma = Button(miFrame, text = "+", font = 10, width = 9, height = 2, command = lambda:suma(display.get()))
+botonSuma = Button(miFrame, text = "+", font = 10, width = 9, height = 2, command = lambda:botonOperacion(display.get(),"suma"))
 botonSuma.grid(row = 5, column = 4)
 botonSuma.config(cursor = "hand2")
 
-
+# ---------- fin del programa ---------- #
 raiz.mainloop()
