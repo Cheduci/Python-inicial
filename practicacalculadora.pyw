@@ -1,6 +1,8 @@
 from tkinter import *
 from tkinter import messagebox
 
+# ---------- Funciones nucleo ---------- #
+
 def infoAdicional(): # se debe definir cada función del menú
     messagebox.showinfo("JQZ playing menus","This is just a test, so I'm just playing")
 
@@ -23,6 +25,7 @@ def operacion(o,a,b):
     else:
         return a / b
 
+# ---------- Inicio de calculadora ---------- #
 
 raiz = Tk()
 raiz.title("Calculadora de Zhang Jian Qiao")
@@ -47,17 +50,6 @@ barraMenu.add_cascade(label = "Help", menu = ayudaMenu)
 
 # ---------- Displays ---------- #
 
-def ac():
-    global resetDisplay
-    global op
-    global opPrev
-    global resultado
-    op = ""
-    opPrev = ""
-    resultado = ""
-    resetDisplay = False
-    display.set(resultado)
-
 display = StringVar()
 
 resetDisplay = False
@@ -69,12 +61,22 @@ botonOn = Button(miFrame, text = "Ac", font = 10, width = 9, height = 2, command
 botonOn.grid(row = 1, column = 1)
 botonOn.config(bg = "red", fg = "white", cursor = "hand1")
 
-
 pantalla = Entry(miFrame, font = 8, width = 26, textvariable = display)
 pantalla.grid(row = 1, column = 2, pady = 2, columnspan = 3)
 pantalla.config(bg = "black", fg = "#00FF0F", justify = "right")
 
 # ---------- pulsaciones ---------- #
+
+def ac():
+    global resetDisplay
+    global op
+    global opPrev
+    global resultado
+    op = ""
+    opPrev = ""
+    resultado = ""
+    resetDisplay = False
+    display.set(resultado)
 
 def botoncoma():
     global resetDisplay
@@ -86,7 +88,6 @@ def botoncoma():
         resetDisplay = False
     elif a.count(".") == 0:
         display.set(display.get() + ".")
-
 
 def botonPulsado(num):
     global resetDisplay
