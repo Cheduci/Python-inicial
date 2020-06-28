@@ -12,16 +12,15 @@ listaEmpleados = [
     Empleado("Ana", "Profesora", 7500),
     Empleado("Antonio", "Administrativo", 2100),
     Empleado("Sara", "Secretaria", 2150),
-    Empleado("Mario", "Conserje", 1800
-),
+    Empleado("Mario", "Conserje", 1800),
 ]
 
-def calculo_comision(empleado):
-    if empleado.salario <= 3000:
-        empleado.salario = empleado.salario*1.03
-    return empleado
+def calculo_comision(gil):
+    if gil.salario <= 3000:
+        gil.salario *= 1.03
+    return gil
 
-listaEmpleadosComision=map(calculo_comision, listaEmpleados)
+listaEmpleadosComision = map(calculo_comision, listaEmpleados)
 
 for i in listaEmpleadosComision:
     print(i)
