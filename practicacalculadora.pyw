@@ -120,9 +120,9 @@ botonOn = Button(miFrame, text = "Ac", font = 10, width = 9, height = 2, command
 botonOn.grid(row = 1, column = 1)
 botonOn.config(bg = "red", fg = "white", cursor = "hand1")
 
-pantalla = Entry(miFrame, font = 8, width = 26, textvariable = display)
+pantalla = Entry(miFrame, font = 8, width = 26, textvariable = display, state = "readonly")
 pantalla.grid(row = 1, column = 2, pady = 2, columnspan = 3)
-pantalla.config(bg = "black", fg = "#00FF0F", justify = "right")
+pantalla.config(bg = "black", fg = "black", justify = "right")
 
 # ---------- segunda fila ---------- #
 
