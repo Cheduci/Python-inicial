@@ -48,23 +48,6 @@ ayudaMenu.add_command(label = "About", command = infoAdicional)
 barraMenu.add_cascade(label = "File", menu = archivoMenu)
 barraMenu.add_cascade(label = "Help", menu = ayudaMenu)
 
-# ---------- Displays ---------- #
-
-display = StringVar()
-
-resetDisplay = False
-opPrev = ""
-op = ""
-resultado = 0
-
-botonOn = Button(miFrame, text = "Ac", font = 10, width = 9, height = 2, command = lambda:ac())
-botonOn.grid(row = 1, column = 1)
-botonOn.config(bg = "red", fg = "white", cursor = "hand1")
-
-pantalla = Entry(miFrame, font = 8, width = 26, textvariable = display)
-pantalla.grid(row = 1, column = 2, pady = 2, columnspan = 3)
-pantalla.config(bg = "black", fg = "#00FF0F", justify = "right")
-
 # ---------- pulsaciones ---------- #
 
 def ac():
@@ -83,7 +66,7 @@ def botoncoma():
     global op
     global opPrev
     a = display.get()
-    if a == "":
+    if a == "" or resetDisplay:
         display.set("0.")
         resetDisplay = False
     elif a.count(".") == 0:
@@ -123,6 +106,23 @@ def igual(num):
     resetDisplay = True
     display.set(resultado)
     resultado = 0
+
+# ---------- Display ---------- #
+
+display = StringVar()
+
+resetDisplay = False
+opPrev = ""
+op = ""
+resultado = 0
+
+botonOn = Button(miFrame, text = "Ac", font = 10, width = 9, height = 2, command = ac)
+botonOn.grid(row = 1, column = 1)
+botonOn.config(bg = "red", fg = "white", cursor = "hand1")
+
+pantalla = Entry(miFrame, font = 8, width = 26, textvariable = display)
+pantalla.grid(row = 1, column = 2, pady = 2, columnspan = 3)
+pantalla.config(bg = "black", fg = "#00FF0F", justify = "right")
 
 # ---------- segunda fila ---------- #
 
@@ -184,7 +184,7 @@ boton0 = Button(miFrame, text = "0", font = 10, width = 9, height = 2, command =
 boton0.grid(row = 5, column = 1)
 boton0.config(cursor = "hand2")
 
-botonComa = Button(miFrame, text = ".", font = 10, width = 9, height = 2, command = lambda:botoncoma())
+botonComa = Button(miFrame, text = ".", font = 10, width = 9, height = 2, command = botoncoma)
 botonComa.grid(row = 5, column = 2)
 botonComa.config(cursor = "hand2")
 
