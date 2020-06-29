@@ -18,6 +18,10 @@ def salirApp():
 # ---------- Operador universal ---------- #
 
 def operacion(o,a,b):
+    """
+    Este es el operador que hace todas las operaciones, si en un futuro se quiere agregar más funciones a la calculadora, se puede agregar desde acá.
+    El parámetro 'o' es la operación que analiza, se ingresa un string y hay que hacer un "elif" que lo sepa distinguir.
+    """
     if o == "suma":
         return a + b
     elif o == "resta":
@@ -37,7 +41,7 @@ def ac():
     op = ""
     opPrev = ""
     resultado = ""
-    resetDisplay = False
+    resetDisplay = True
     display.set(resultado)
 
 def botoncoma():
@@ -45,7 +49,7 @@ def botoncoma():
     global op
     global opPrev
     a = display.get()
-    if a == "" or resetDisplay:
+    if resetDisplay:
         display.set("0.")
         resetDisplay = False
     elif a.count(".") == 0:
@@ -60,6 +64,11 @@ def botonPulsado(num):
         display.set(display.get() + num)
 
 def botonOperacion(num,oper):
+    """
+    Convocar esta función en todos los botones de operación.
+    Se recomienda usar "display.get()" en el parámetro 'num' y en el parámetro 'oper' usar el string que la función "operacion" sepa disginguir.
+    La función "operacion(o,a,b)" está descrita más arriba.
+    """
     global op
     global opPrev
     global resultado
@@ -115,7 +124,7 @@ barraMenu.add_cascade(label = "Help", menu = ayudaMenu)
 
 display = StringVar()
 
-resetDisplay = False
+resetDisplay = True
 opPrev = ""
 op = ""
 resultado = 0
