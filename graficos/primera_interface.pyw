@@ -7,6 +7,7 @@ raiz.title("Mi primera ventana, Zhang Jian Qiao")
 raiz.config(bg = "green") # bg = background
 raiz.config(bd=32)
 raiz.config(relief = "groove")
+raiz.resizable(False,True) # el primer argumento es para el eje X y el segundo para el eje Y
 
 miFrame = Frame()
 #miFrame.pack(side="left",anchor="s") # side funca con direcciones, anchor funciona con puntos cardinales
