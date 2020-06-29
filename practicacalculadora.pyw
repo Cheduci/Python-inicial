@@ -20,7 +20,7 @@ def salirApp():
 def operacion(o,a,b):
     """
     Este es el operador que hace todas las operaciones, si en un futuro se quiere agregar más funciones a la calculadora, se puede agregar desde acá.
-    El parámetro 'o' es la operación que analiza, se ingresa un string y hay que hacer un "elif" que lo sepa distinguir.
+    El parámetro 'o' es la operación que analiza, se ingresa un string y hay que hacer un "elif" que lo sepa distinguir, tal como "suma", "resta", etc.
     """
     if o == "suma":
         return a + b
