@@ -203,10 +203,10 @@ botonDelete.grid(row = 0, column = 2, padx = 10, pady = 10)
 # ----------- Tabla (Frame 3) ----------- #
 
 miFrame3 = Frame(raiz)
-miFrame3.pack()
+miFrame3.pack(fill = "both", expand = 1)
 
 arbol = ttk.Treeview(miFrame3)
-arbol.pack()
+arbol.pack(fill = "both", expand = 1)
 
 arbol["columns"] = ("one", "two")
 arbol.column("#0", width = 50, minwidth = 50)
