@@ -257,26 +257,17 @@ campototal.grid(row = 1, column = 5, padx = 3)
     
     # ------------ Botones ------------ #
 
-#etiqueta1 = Label(frameIzq, text = "Etiqueta 1:", font = "Calibri 20 bold italic")
-#etiqueta1.grid(row = 0, column = 0)
 boton1 = Button(quintoelem, text = "Total", font = "Arial 15 bold", command = primerboton, width = 10)
 boton1.grid(row = 1, column = 0, padx = 15, sticky = "n")
 
-#etiqueta2 = Label(frameIzq, text = "Etiqueta 2:", font = "Calibri 20 bold italic")
-#etiqueta2.grid(row = 1, column = 0)
 boton2 = Button(quintoelem, text = "Recibo", font = "Arial 15 bold", command = segundoboton, width = 10)
 boton2.grid(row = 1, column = 1, padx = 15, sticky = "n")
 
-#etiqueta3 = Label(frameIzq, text = "Etiqueta 3:", font = "Calibri 20 bold italic")
-#etiqueta3.grid(row = 2, column = 0)
 boton3 = Button(quintoelem, text = "Limpiar", font = "Arial 15 bold", command = tercerboton, width = 10)
 boton3.grid(row = 1, column = 2, padx = 15, sticky = "n")
 
-#etiqueta4 = Label(frameIzq, text = "Etiqueta 4:", font = "Calibri 20 bold italic")
-#etiqueta4.grid(row = 3, column = 0)
 boton4 = Button(quintoelem, text = "Salir", font = "Arial 15 bold", command = cuartoboton, width = 10)
 boton4.grid(row = 1, column = 3, padx = 15, sticky = "n")
-
 
 # ------------ Fin del programa ------------ #
 raiz.mainloop()
