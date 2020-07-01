@@ -3,7 +3,7 @@ from tkinter import *
 root = Tk()
 root.title("Whatever I want")
 
-uno = IntVar()
+uno = IntVar() # muy importante definir estas variables como enteros
 dos = IntVar()
 tres = IntVar()
 
