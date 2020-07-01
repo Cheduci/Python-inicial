@@ -17,9 +17,9 @@ def segundoboton():
     messagebox.showinfo("Segundo botón","El segundo botón funciona")
 
 def tercerboton():
-    cliente.set(""); apellido.set(""); nombre.set(""); snombre.set(""); rua.set(""); area.set(""); codpostal.set(""); ncnh.set(""); dataa.set(""); localidad.set(""); matricula.set(""); diastotales.set("") 
-    tipomotor.set(""); estilo.set(""); agnoauto.set(""); claseauto.set(""); descauto.set(""); kmanterior.set(""); kmentrega.set(""); fabauto.set(""); modeloauto.set(""); fabmotor.set(""); corauto.set(""); seguroauto.set("")
-    idCliente.set(""); totaldias.set(""); diasalqui.set(""); factura.set(""); descuento.set(""); totalfinal.set("")
+    doccliente.set(""); apellido.set(""); nombre.set(""); snombre.set(""); liccliente.set(""); telefono.set(""); domiccliente.set(""); ncnh.set(""); dataa.set("")
+    idvehic.set(""); marcavehic.set(""); modelauto.set(""); agnoauto.set(""); nombmotor.set(""); agnomotor.set(""); combustible.set(""); kmacum.set(""); seguroauto.set("")
+    idfactura.set(""); totaldias.set(""); fechaalqui.set(""); preciodia.set(""); descuento.set(""); totalfinal.set("")
 
 def cuartoboton():
     salir = messagebox.askyesno("Salir","¿Seguro que desea salir?")
@@ -31,43 +31,23 @@ def quintoboton():
 
 def opciones():
     global muestra
-    eleccion = {"estilo":"Económico", "claseid":"Cliente estándar", "facturaid":"Pagado en ARS", "diaria":"No", "automatico":"No", "aircond":"No", "segurinc":"No", "detallecliente":"No"}
     if checkuno.get() == 1:
-        eleccion["estilo"] = "Clásico"
+        muestra["estilo"] = "Clásico"
+    else:
+        muestra["estilo"] = "Económico"
     if checkdos.get() == 1:
-        eleccion["claseid"] = "Cliente VIP"
+        muestra["claseid"] = "Cliente VIP"
+    else:
+         muestra["claseid"] = "Cliente estandar"
     if checktres.get() == 1:
-        eleccion["facturaid"] = "Pagado en USD"
+        muestra["facturaid"] = "Pagado en USD"
+    else:
+        muestra["facturaid"] = "Pagado en ARS"
     if checkcuatro.get() == 1:
-        eleccion["diaria"] = "Sí"
-    if checkcinco.get() == 1:
-        eleccion["automatico"] = "Sí"
-    if checkseis.get() == 1:
-        eleccion["aircond"] = "Sí"
-    if checksiete.get() == 1:
-        eleccion["segurinc"] = "Sí"
-    if checkocho.get() == 1:
-        eleccion["detallecliente"] = "Sí"
-    muestra = eleccion
-
-def conexionBBDD():
-    miConexion = sqlite3.connect("Usuarios")
-    miCursor = miConexion.cursor()
-    try:
-        miCursor.execute('''
-            CREATE TABLE DATOSUSUARIOS (
-            ID INTEGER PRIMARY KEY AUTOINCREMENT,
-            ID_CLIENTE VARCHAR(20),
-            APELLIDO_CLIENTE VARCHAR(20),
-            NOMBRE_CLIENTE VARCHAR(20),
-            S_NOMBRE VARCHAR(20),
-            COMENTARIOS VARCHAR(100))
-            ''')
-        messagebox.showinfo("BBDD","La BBDD fue creada exitósamente")
+        muestra["aeropuerto"] = "Sí"
+    else:
+        muestra["aeropuerto"] = "No"
     
-    except:
-        messagebox.showwarning("¡Atención!","La BBDD ya existe")
-
 def get_prod():
     records = arbol.get_children()
     for elem in records:
@@ -79,7 +59,7 @@ def get_prod():
     filasbd = miCursor.execute("select * from ALQUILER order by ID desc")
     miConexion.commit()
     for fila in filasbd:
-        arbol.insert("", 0, text = fila[0], values = (fila[1], fila[2]))
+        arbol.insert("", 0, text = fila[0], values = (fila[1], fila[2], fila[3]))
 
 # ------------ Definiendo estructura ventana ------------ #
 
@@ -128,10 +108,10 @@ Label(primeroselem, text = "Autos Rent Chuang", font = "Cambria 40 bold", bg = "
 grillacliente = LabelFrame(segundoselem, text = "Datos de cliente", font = "Cambria 15", labelanchor = "n")
 grillacliente.pack(pady = 10)
 
-cliente = StringVar()
+doccliente = StringVar()
 etiq111 = Label(grillacliente, text = "Documento: ", font = "15")
 etiq111.grid(row = 0, column = 0, sticky = "e")
-camp111 = Entry(grillacliente, textvariable = cliente, font = "15")
+camp111 = Entry(grillacliente, textvariable = doccliente, font = "15")
 camp111.grid(row = 0, column = 1)
 
 apellido = StringVar()
@@ -152,22 +132,22 @@ etiq121.grid(row = 1, column = 0, sticky = "e")
 camp121 = Entry(grillacliente, textvariable = snombre, font = "15")
 camp121.grid(row = 1, column = 1)
 
-rua = StringVar()
+liccliente = StringVar()
 etiq122 = Label(grillacliente, text = "Licencia: ", font = "15")
 etiq122.grid(row = 1, column = 2, sticky = "e")
-camp122 = Entry(grillacliente, textvariable = rua, font = "15")
+camp122 = Entry(grillacliente, textvariable = liccliente, font = "15")
 camp122.grid(row = 1, column = 3)
 
-area = StringVar()
+telefono = StringVar()
 etiq123 = Label(grillacliente, text = "Teléfono: ", font = "15")
 etiq123.grid(row = 1, column = 4, sticky = "e")
-camp123 = Entry(grillacliente, textvariable = area, font = "15")
+camp123 = Entry(grillacliente, textvariable = telefono, font = "15")
 camp123.grid(row = 1, column = 5)
 
-codpostal = StringVar()
+domiccliente = StringVar()
 etiq131 = Label(grillacliente, text = "Domicilio: ", font = "15")
 etiq131.grid(row = 2, column = 0, sticky = "e")
-camp131 = Entry(grillacliente, textvariable = codpostal, font = "15")
+camp131 = Entry(grillacliente, textvariable = domiccliente, font = "15")
 camp131.grid(row = 2, column = 1)
 
 ncnh = StringVar()
@@ -187,58 +167,58 @@ camp133.grid(row = 2, column = 5)
 grillaauto = LabelFrame(tercerelem, text = "Datos de auto", font = "Cambria 15", labelanchor = "n")
 grillaauto.pack(pady = 10)
 
-tipomotor = StringVar()
-etiq211 = Label(grillaauto, text = "Tipo vehículo: ", font = "15")
+idvehic = StringVar()
+etiq211 = Label(grillaauto, text = "ID Vehículo: ", font = "15")
 etiq211.grid(row = 0, column = 0, sticky = "e")
-camp211 = Entry(grillaauto, textvariable = tipomotor, font = "15")
+camp211 = Entry(grillaauto, textvariable = idvehic, font = "15")
 camp211.grid(row = 0, column = 1)
 
-estilo = StringVar()
+marcavehic = StringVar()
 etiq212 = Label(grillaauto, text = "Marca: ", font = "15")
 etiq212.grid(row = 0, column = 2, sticky = "e")
-camp212 = Entry(grillaauto, textvariable = estilo, font = "15")
+camp212 = Entry(grillaauto, textvariable = marcavehic, font = "15")
 camp212.grid(row = 0, column = 3)
 
-agnoauto = StringVar()
+modelauto = StringVar()
 etiq213 = Label(grillaauto, text = "Modelo: ", font = "15")
 etiq213.grid(row = 0, column = 4, sticky = "e")
-camp213 = Entry(grillaauto, textvariable = agnoauto, font = "15")
+camp213 = Entry(grillaauto, textvariable = modelauto, font = "15")
 camp213.grid(row = 0, column = 5)
 
-claseauto = StringVar()
+agnoauto = StringVar()
 etiq221 = Label(grillaauto, text = "Año auto: ", font = "15")
 etiq221.grid(row = 1, column = 0, sticky = "e")
-camp221 = Entry(grillaauto, textvariable = claseauto, font = "15")
+camp221 = Entry(grillaauto, textvariable = agnoauto, font = "15")
 camp221.grid(row = 1, column = 1)
 
-descauto = StringVar()
+nombmotor = StringVar()
 etiq222 = Label(grillaauto, text = "Nombre motor: ", font = "15")
 etiq222.grid(row = 1, column = 2, sticky = "e")
-camp222 = Entry(grillaauto, textvariable = descauto, font = "15")
+camp222 = Entry(grillaauto, textvariable = nombmotor, font = "15")
 camp222.grid(row = 1, column = 3)
 
-kmanterior = StringVar()
+agnomotor = StringVar()
 etiq223 = Label(grillaauto, text = "Año motor: ", font = "15")
 etiq223.grid(row = 1, column = 4, sticky = "e")
-camp223 = Entry(grillaauto, textvariable = kmanterior, font = "15")
+camp223 = Entry(grillaauto, textvariable = agnomotor, font = "15")
 camp223.grid(row = 1, column = 5)
 
-kmentrega = StringVar()
+combustible = StringVar()
 etiq231 = Label(grillaauto, text = "Combustible: ", font = "15")
 etiq231.grid(row = 2, column = 0, sticky = "e")
-camp231 = Entry(grillaauto, textvariable = kmentrega, font = "15")
+camp231 = Entry(grillaauto, textvariable = combustible, font = "15")
 camp231.grid(row = 2, column = 1)
 
-fabauto = StringVar()
+kmacum = StringVar()
 etiq232 = Label(grillaauto, text = "Km. acumulados: ", font = "15")
 etiq232.grid(row = 2, column = 2, sticky = "e")
-camp232 = Entry(grillaauto, textvariable = fabauto, font = "15")
+camp232 = Entry(grillaauto, textvariable = kmacum, font = "15")
 camp232.grid(row = 2, column = 3)
 
-modeloauto = StringVar()
+seguroauto = StringVar()
 etiq233 = Label(grillaauto, text = "Seguro: ", font = "15")
 etiq233.grid(row = 2, column = 4, sticky = "e")
-camp233 = Entry(grillaauto, textvariable = modeloauto, font = "15")
+camp233 = Entry(grillaauto, textvariable = seguroauto, font = "15")
 camp233.grid(row = 2, column = 5)
 
     # ------------ Info renta ------------ #
@@ -246,16 +226,16 @@ camp233.grid(row = 2, column = 5)
 grillarenta = LabelFrame(cuartoelem, text = "Info de la renta", font = "Cambria 15", labelanchor = "n")
 grillarenta.pack(pady = 10)
 
-idCliente = StringVar()
+idfactura = StringVar()
 totaldias = StringVar()
-diasalqui = StringVar()
-factura = StringVar()
+fechaalqui = StringVar()
+preciodia = StringVar()
 descuento = StringVar()
 totalfinal = StringVar()
 
 etiquetacliente = Label(grillarenta, text = "ID Factura: ", font = "15")
 etiquetacliente.grid(row = 0, column = 0, padx = 3, sticky = "e")
-campocliente = Entry(grillarenta, textvariable = idCliente, font = "15", state = "readonly")
+campocliente = Entry(grillarenta, textvariable = idfactura, font = "15", state = "readonly")
 campocliente.grid(row = 0, column = 1, padx = 3)
 
 etiqtotaldias = Label(grillarenta, text = "Total días: ", font = "15")
@@ -263,14 +243,14 @@ etiqtotaldias.grid(row = 1, column = 0, padx = 3, sticky = "e")
 campototaldias = Entry(grillarenta, textvariable = totaldias, font = "15")
 campototaldias.grid(row = 1, column = 1, padx = 3)
 
-etiqdiasalqui = Label(grillarenta, text = "Fecha alquiler: ", font = "15")
-etiqdiasalqui.grid(row = 0, column = 2, padx = 3, sticky = "e")
-campodiasalqui = Entry(grillarenta, textvariable = diasalqui, font = "15")
-campodiasalqui.grid(row = 0, column = 3, padx = 3)
+etiqfechaalqui = Label(grillarenta, text = "Fecha alquiler: ", font = "15")
+etiqfechaalqui.grid(row = 0, column = 2, padx = 3, sticky = "e")
+campofechaalqui = Entry(grillarenta, textvariable = fechaalqui, font = "15")
+campofechaalqui.grid(row = 0, column = 3, padx = 3)
 
-etiqfactura = Label(grillarenta, text = "Costo diario: ", font = "15")
+etiqfactura = Label(grillarenta, text = "Precio diario: ", font = "15")
 etiqfactura.grid(row = 1, column = 2, padx = 3, sticky = "e")
-campofactura = Entry(grillarenta, textvariable = factura, font = "15")
+campofactura = Entry(grillarenta, textvariable = preciodia, font = "15", state = "readonly")
 campofactura.grid(row = 1, column = 3, padx = 3)
 
 etiqdesc = Label(grillarenta, text = "Descuento: ", font = "15")
@@ -316,35 +296,24 @@ elemtres.grid(row = 2, column = 0, pady = 10)
 
     # ------------ Settings de alquiler ------------ #
 
-muestra = dict()
+muestra = {"estilo":"Económico", "claseid":"Cliente estandar", "facturaid":"Pagado en ARS", "aeropuerto":"No"}
 
 grillaopciones = Frame(elemuno)
 grillaopciones.pack()
 
 checkuno = IntVar()
-check1 = Checkbutton(grillaopciones, text = "Estilo", variable = checkuno, onvalue = 1, offvalue = 0, command = opciones)
-check1.grid(row = 0)
+check1 = Checkbutton(grillaopciones, text = "Estilo clásico", variable = checkuno, onvalue = 1, offvalue = 0, command = opciones)
+check1.grid(row = 0, sticky = "w")
 checkdos = IntVar()
-check2 = Checkbutton(grillaopciones, text = "Clase ID", variable = checkdos, onvalue = 1, offvalue = 0, command = opciones)
-check2.grid(row = 1)
+check2 = Checkbutton(grillaopciones, text = "Cliente VIP", variable = checkdos, onvalue = 1, offvalue = 0, command = opciones)
+check2.grid(row = 1, sticky = "w")
 checktres = IntVar()
-check3 = Checkbutton(grillaopciones, text = "Factura ID", variable = checktres, onvalue = 1, offvalue = 0, command = opciones)
-check3.grid(row = 2)
+check3 = Checkbutton(grillaopciones, text = "Precio USD", variable = checktres, onvalue = 1, offvalue = 0, command = opciones)
+check3.grid(row = 2, sticky = "w")
 checkcuatro = IntVar()
-check4 = Checkbutton(grillaopciones, text = "Diaria", variable = checkcuatro, onvalue = 1, offvalue = 0, command = opciones)
-check4.grid(row = 3)
-checkcinco = IntVar()
-check5 = Checkbutton(grillaopciones, text = "Automático", variable = checkcinco, onvalue = 1, offvalue = 0, command = opciones)
-check5.grid(row = 4)
-checkseis = IntVar()
-check6 = Checkbutton(grillaopciones, text = "A/C", variable = checkseis, onvalue = 1, offvalue = 0, command = opciones)
-check6.grid(row = 5)
-checksiete = IntVar()
-check7 = Checkbutton(grillaopciones, text = "Seguro incluido", variable = checksiete, onvalue = 1, offvalue = 0, command = opciones)
-check7.grid(row = 6)
-checkocho = IntVar()
-check8 = Checkbutton(grillaopciones, text = "Detalles del cliente", variable = checkocho, onvalue = 1, offvalue = 0, command = opciones)
-check8.grid(row = 7)
+check4 = Checkbutton(grillaopciones, text = "Devolución en aeropuerto", variable = checkcuatro, onvalue = 1, offvalue = 0, command = opciones)
+check4.grid(row = 3, sticky = "w")
+
     # ------------ Botones ------------ #
 
 grillabotones = Frame(elemdos)
@@ -372,14 +341,14 @@ arbol = ttk.Treeview(grillatabla, height = 22)
 arbol.pack(fill = "both", expand = 1)
 
 arbol["columns"] = ("one", "two", "three")
-arbol.column("#0", width = 150, minwidth = 50)
-arbol.heading("#0", text = "Num factura", anchor = CENTER)
-arbol.column("one", width = 150, minwidth = 150)
+arbol.column("#0", width = 75, minwidth = 50)
+arbol.heading("#0", text = "ID factura", anchor = CENTER)
+arbol.column("one", width = 75, minwidth = 50)
 arbol.heading("one", text = "ID Auto", anchor = CENTER)
-arbol.column("two", width = 150, minwidth = 75)
+arbol.column("two", width = 300, minwidth = 75)
 arbol.heading("two", text = "Nombre cliente", anchor = CENTER)
 arbol.column("three", width = 150, minwidth = 75)
-arbol.heading("three", text = "Fecha expiracion", anchor = CENTER)
+arbol.heading("three", text = "Fecha expiración", anchor = CENTER)
 
 scrollHor = Scrollbar(grillatabla, command = arbol.xview, orient=HORIZONTAL)
 scrollHor.pack(fill = "x")
