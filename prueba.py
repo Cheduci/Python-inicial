@@ -1,5 +1,9 @@
-diccionario1 = {"uno":"jaja", "dos":"jeje", "tres":"jiji"}
-print(diccionario1)
+def incremento():
+    n1 = 0
+    while True:
+        n1 += 1
+        yield n1
 
-diccionario1["dos"] = "lele"
-print(diccionario1)
+na = incremento()
+while int(na) < 20:
+    print(next(na))
