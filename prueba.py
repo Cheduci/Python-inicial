@@ -1,9 +1,7 @@
-def incremento():
-    n1 = 0
-    while True:
-        n1 += 1
-        yield n1
+import random
+#lista = [random.randint(0,5) for x in range(5)]
+lista = []
+for x in range(5):
+    lista.append(random.randint(0,5))
 
-na = incremento()
-while int(na) < 20:
-    print(next(na))
+print(lista)
